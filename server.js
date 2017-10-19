@@ -41,6 +41,6 @@ client.login(appGlobals.token).then(() => {
     },
     () => {
         console.log("bot failed to login")
-        console.log("did you change token.js?");
+        console.log("did you change token?");
     }
 );
