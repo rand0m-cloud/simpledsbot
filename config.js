@@ -1,5 +1,5 @@
 const fs = require("fs");
-const token = fs.readFileSync("token");
+const token = fs.readFileSync("token").toString("ascii");
 module.exports = exports = {
     "token": token,
     "prefix": "*",
