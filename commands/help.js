@@ -1,7 +1,8 @@
 const appGlobal = require("../config.js");
 const fs = require("fs");
 module.exports = {
-    "trigger": appGlobal.createTrigger("help"),
+    "trigger": new RegExp(appGlobal.prefix.source + "help"),
+    "testString":`${appGlobal.trigger}help`,
     "message": function(client, channel, message) {
         var files = fs.readdirSync("./commands");
         var commands = [];
@@ -10,7 +11,7 @@ module.exports = {
             var command = require(`./${file}`);
             //console.log(command.desc);
             commands.push({
-                "trigger": command.trigger,
+                "trigger": command.testString,
                 "description": command.desc
             });
 

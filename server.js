@@ -11,16 +11,18 @@ client.on('ready', () => {
 
 client.on('message', (message) => {
 
-    if (commands[message.content]) {
-        commands[message.content](client, message.channel, message);
-    }
+    commands.forEach((command)=>{
+      if(command.trigger.test(message)){
+        command.message(client,message.channel,message);
+      }
+    })
 });
 var files = fs.readdirSync("commands/");
-var commands = {};
+var commands = [];
 for (var file of files) {
     console.log(`loading ${file}`);
     var command = require(`./commands/${file}`);
-    commands[command.trigger] = command.message;
+    commands.push(command);
 
 }
 client.login(appGlobals.token).then(() => {
